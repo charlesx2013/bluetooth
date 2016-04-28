@@ -11,10 +11,10 @@
 
 #include "BluefruitConfig.h"
 
-const int motor1Pin1 = 0;
-const int motor1Pin2 = 1;
-const int motor2Pin1 = 2;
-const int motor2Pin2 = 3;
+const int motor1Pin1 = A0;
+const int motor1Pin2 = A1;
+const int motor2Pin1 = A2;
+const int motor2Pin2 = A3;
 
 /*=========================================================================
     APPLICATION SETTINGS
@@ -161,26 +161,38 @@ void setup(void)
 void forward() {
   digitalWrite(motor1Pin1, HIGH);
   digitalWrite(motor1Pin2, LOW);
+  digitalWrite(motor2Pin1, HIGH);
+  digitalWrite(motor2Pin2, LOW);
 }
 
 void left() {
   digitalWrite(motor1Pin1, HIGH);
   digitalWrite(motor1Pin2, LOW);
+  digitalWrite(motor2Pin1, HIGH);
+  digitalWrite(motor2Pin2, LOW);
 }
 
 void right() {
   digitalWrite(motor1Pin1, HIGH);
   digitalWrite(motor1Pin2, LOW);
+  digitalWrite(motor2Pin1, HIGH);
+  digitalWrite(motor2Pin2, LOW);
 }
 
 void backward() {
   digitalWrite(motor1Pin1, HIGH);
   digitalWrite(motor1Pin2, LOW);
+  digitalWrite(motor2Pin1, HIGH);
+  digitalWrite(motor2Pin2, LOW);
 }
 
 void loop(void)
 {
   Serial.println("LOOP");
+  digitalWrite(motor1Pin1, HIGH);
+  digitalWrite(motor1Pin2, LOW);
+  digitalWrite(motor2Pin1, HIGH);
+  digitalWrite(motor2Pin2, LOW);
   if (moveForwards) {
     Serial.println("moving forwards");
     forward();
