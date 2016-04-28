@@ -11,10 +11,10 @@
 
 #include "BluefruitConfig.h"
 
-const int motor1Pin1 = A0;
-const int motor1Pin2 = A1;
-const int motor2Pin1 = A2;
-const int motor2Pin2 = A3;
+const int motor1Red = A0;
+const int motor1Bck = A1;
+const int motor2Red = A2;
+const int motor2Bck = A3;
 
 /*=========================================================================
     APPLICATION SETTINGS
@@ -150,67 +150,63 @@ void setup(void)
   turnRight = false;
 
   // put your setup code here, to run once:
-  pinMode(motor1Pin1, OUTPUT);
-  pinMode(motor1Pin2, OUTPUT);
-  pinMode(motor2Pin1, OUTPUT);
-  pinMode(motor2Pin2, OUTPUT);
+  pinMode(motor1Red, OUTPUT);
+  pinMode(motor1Bck, OUTPUT);
+  pinMode(motor2Red, OUTPUT);
+  pinMode(motor2Bck, OUTPUT);
   
   Serial.println("Setup motors");
 }
 
 void forward() {
-  digitalWrite(motor1Pin1, HIGH);
-  digitalWrite(motor1Pin2, LOW);
-  digitalWrite(motor2Pin1, HIGH);
-  digitalWrite(motor2Pin2, LOW);
+  digitalWrite(motor1Red, HIGH);
+  digitalWrite(motor1Bck, LOW);
+  digitalWrite(motor2Red, HIGH);
+  digitalWrite(motor2Bck, LOW);
 }
 
 void left() {
-  digitalWrite(motor1Pin1, HIGH);
-  digitalWrite(motor1Pin2, LOW);
-  digitalWrite(motor2Pin1, HIGH);
-  digitalWrite(motor2Pin2, LOW);
+  digitalWrite(motor1Red, LOW);
+  digitalWrite(motor1Bck, HIGH);
+  digitalWrite(motor2Red, HIGH);
+  digitalWrite(motor2Bck, LOW);
 }
 
 void right() {
-  digitalWrite(motor1Pin1, HIGH);
-  digitalWrite(motor1Pin2, LOW);
-  digitalWrite(motor2Pin1, HIGH);
-  digitalWrite(motor2Pin2, LOW);
+  digitalWrite(motor1Red, HIGH);
+  digitalWrite(motor1Bck, LOW);
+  digitalWrite(motor2Red, LOW);
+  digitalWrite(motor2Bck, HIGH);
 }
 
 void backward() {
-  digitalWrite(motor1Pin1, HIGH);
-  digitalWrite(motor1Pin2, LOW);
-  digitalWrite(motor2Pin1, HIGH);
-  digitalWrite(motor2Pin2, LOW);
+  digitalWrite(motor1Red, LOW);
+  digitalWrite(motor1Bck, HIGH);
+  digitalWrite(motor2Red, LOW);
+  digitalWrite(motor2Bck, HIGH);
 }
 
 void loop(void)
 {
-  Serial.println("LOOP");
-  digitalWrite(motor1Pin1, HIGH);
-  digitalWrite(motor1Pin2, LOW);
-  digitalWrite(motor2Pin1, HIGH);
-  digitalWrite(motor2Pin2, LOW);
-  if (moveForwards) {
-    Serial.println("moving forwards");
-    forward();
-  }
-  
-  if (moveBackwards) {
-    Serial.println("moving backwards");
-    backward();
-  }
-  
-  if (turnLeft) {
-    Serial.println("turn left");
-    left();
-  }
-  
-  if (turnRight) {
-    Serial.println("turn right");
-    right();
+  if (pressed) {
+    if (moveForwards) {
+      Serial.println("moving forwards");
+      forward();
+    } else if (moveBackwards) {
+      Serial.println("moving backwards");
+      backward();
+    } else if (turnLeft) {
+      Serial.println("turn left");
+      left();
+    } else if (turnRight) {
+      Serial.println("turn right");
+      right();
+    }
+  } else {
+    digitalWrite(motor1Red, LOW);
+    digitalWrite(motor1Bck, LOW);
+    digitalWrite(motor2Red, LOW);
+    digitalWrite(motor2Bck, LOW);
   }
   
   /* Wait for new data to arrive */
