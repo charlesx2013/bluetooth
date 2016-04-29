@@ -188,21 +188,19 @@ void backward() {
 
 void loop(void)
 {
-  if (pressed) {
-    if (moveForwards) {
-      Serial.println("moving forwards");
-      forward();
-    } else if (moveBackwards) {
-      Serial.println("moving backwards");
-      backward();
-    } else if (turnLeft) {
-      Serial.println("turn left");
-      left();
-    } else if (turnRight) {
-      Serial.println("turn right");
-      right();
-    }
-  } else {
+  if (moveForwards) {
+    Serial.println("moving forwards");
+    forward();
+  } else if (moveBackwards) {
+    Serial.println("moving backwards");
+    backward();
+  } else if (turnLeft) {
+    Serial.println("turn left");
+    left();
+  } else if (turnRight) {
+    Serial.println("turn right");
+    right();
+  }else {
     digitalWrite(motor1Red, LOW);
     digitalWrite(motor1Bck, LOW);
     digitalWrite(motor2Red, LOW);
